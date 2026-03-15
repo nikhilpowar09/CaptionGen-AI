@@ -1,0 +1,43 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "CLI: Generate Captions",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}/src/caption_generator.py",
+      "args": ["${input:videoPath}", "--style", "${input:captionStyle}"],
+      "env": {
+        "ANTHROPIC_API_KEY": "${env:ANTHROPIC_API_KEY}"
+      },
+      "console": "integratedTerminal",
+      "cwd": "${workspaceFolder}"
+    },
+    {
+      "name": "Web UI: Caption Generator",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}/src/app.py",
+      "env": {
+        "ANTHROPIC_API_KEY": "${env:ANTHROPIC_API_KEY}"
+      },
+      "console": "integratedTerminal",
+      "cwd": "${workspaceFolder}"
+    }
+  ],
+  "inputs": [
+    {
+      "id": "videoPath",
+      "type": "promptString",
+      "description": "Path to your video file",
+      "default": "sample.mp4"
+    },
+    {
+      "id": "captionStyle",
+      "type": "pickString",
+      "description": "Caption style",
+      "options": ["standard", "educational", "cinematic", "accessible"],
+      "default": "standard"
+    }
+  ]
+}
