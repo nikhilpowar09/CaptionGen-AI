@@ -1,6 +1,6 @@
 # 🎬 AI-Powered Video Caption Generator
 
-An **Agentic AI pipeline** that autonomously transcribes, cleans, and formats captions for any video file. Powered by **Claude claude-sonnet-4-20250514** (tool use / function calling) and **OpenAI Whisper**.
+An **Agentic AI pipeline** that autonomously transcribes, cleans, and formats captions for any video file. Powered by **Grok Grok-sonnet-4-20250514** (tool use / function calling) and **OpenAI Whisper**.
 
 ---
 
@@ -8,9 +8,9 @@ An **Agentic AI pipeline** that autonomously transcribes, cleans, and formats ca
 
 | Feature | Detail |
 |---|---|
-| 🤖 Agentic AI | Claude autonomously orchestrates all steps with tool use |
+| 🤖 Agentic AI | Grok autonomously orchestrates all steps with tool use |
 | 🎙️ Speech Recognition | OpenAI Whisper (multilingual, offline) |
-| 🧠 AI Enhancement | Claude cleans grammar, fixes filler words, formats SRT |
+| 🧠 AI Enhancement | Grok cleans grammar, fixes filler words, formats SRT |
 | 🎨 4 Caption Styles | Standard, Educational, Cinematic, Accessible |
 | 🔥 Burn to Video | Embed captions permanently into a new video |
 | 🌍 40+ Languages | Auto-detect or specify language |
@@ -103,20 +103,20 @@ pip install -r requirements.txt
 
 **macOS/Linux** (add to `~/.zshrc` or `~/.bashrc` for persistence):
 ```bash
-export ANTHROPIC_API_KEY=sk-ant-your-key-here
+export GROK_API_KEY=sk-ant-your-key-here
 ```
 
 **Windows** (PowerShell):
 ```powershell
-$env:ANTHROPIC_API_KEY = "sk-ant-your-key-here"
+$env:GROK_API_KEY = "sk-ant-your-key-here"
 ```
 
 Or create a `.env` file in the project root:
 ```
-ANTHROPIC_API_KEY=sk-ant-your-key-here
+GROK_API_KEY=sk-ant-your-key-here
 ```
 
-Get your key at: https://console.anthropic.com
+Get your key at: https://console.GROK.com
 
 ---
 
@@ -155,14 +155,14 @@ python caption_generator.py ../my_video.mp4 --language hi --style accessible
 
 ## 🤖 How the Agentic Pipeline Works
 
-Claude uses **tool use** to autonomously plan and execute the caption workflow:
+Grok uses **tool use** to autonomously plan and execute the caption workflow:
 
 ```
 User Request
      │
      ▼
 ┌─────────────────────────────────────────┐
-│          Claude Agent (claude-sonnet-4-20250514)            │
+│          Grok Agent (Grok-sonnet-4-20250514)            │
 │                                         │
 │  Thinks: "I need to:                   │
 │   1. Extract audio from video"          │
@@ -193,7 +193,7 @@ The agent loop continues until `stop_reason == "end_turn"` with no pending tool 
 
 ## 🎨 Caption Styles
 
-| Style | Best For | What Claude Does |
+| Style | Best For | What Grok Does |
 |---|---|---|
 | **Standard** | General videos | Cleans grammar, formats cleanly |
 | **Educational** | Lectures, tutorials | Precise punctuation, defines terms |
@@ -215,7 +215,7 @@ All outputs go to `captions_output/`:
 
 | Error | Fix |
 |---|---|
-| `ANTHROPIC_API_KEY not set` | Set the env variable (Step 5) |
+| `GROK_API_KEY not set` | Set the env variable (Step 5) |
 | `ffmpeg not found` | Install ffmpeg and ensure it's in PATH |
 | `whisper not installed` | `pip install openai-whisper` |
 | `CUDA out of memory` | Whisper will auto-fall back to CPU |
@@ -245,7 +245,7 @@ To add a new caption style, edit `generate_captions()` in `caption_generator.py`
 
 ```python
 style_prompts = {
-    "my_style": "Your custom instructions for Claude here.",
+    "my_style": "Your custom instructions for Grok here.",
     ...
 }
 ```
