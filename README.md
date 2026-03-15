@@ -1,253 +1,258 @@
-# 🎬 AI-Powered Video Caption Generator
+# 🎬 CaptionGen AI – AI Powered Video Caption Generator
 
-An **Agentic AI pipeline** that autonomously transcribes, cleans, and formats captions for any video file. Powered by **Grok Grok-sonnet-4-20250514** (tool use / function calling) and **OpenAI Whisper**.
+CaptionGen AI is an **AI-powered video caption generator** that automatically converts video speech into accurate subtitles.
+It uses **speech recognition, AI text processing, and video tools** to generate professional subtitle files and optionally burn captions directly into the video.
 
----
-
-## ✨ Features
-
-| Feature | Detail |
-|---|---|
-| 🤖 Agentic AI | Grok autonomously orchestrates all steps with tool use |
-| 🎙️ Speech Recognition | OpenAI Whisper (multilingual, offline) |
-| 🧠 AI Enhancement | Grok cleans grammar, fixes filler words, formats SRT |
-| 🎨 4 Caption Styles | Standard, Educational, Cinematic, Accessible |
-| 🔥 Burn to Video | Embed captions permanently into a new video |
-| 🌍 40+ Languages | Auto-detect or specify language |
-| 🖥️ Web UI | Beautiful dark-theme browser interface |
-| ⌨️ CLI | Full command-line support |
+This project is designed for **developers, content creators, educators, and accessibility use cases**.
 
 ---
 
-## 📁 Project Structure
+# 🚀 Features
+
+| Feature                   | Description                                        |
+| ------------------------- | -------------------------------------------------- |
+| 🎙️ Speech Recognition    | Uses AI speech-to-text to transcribe video audio   |
+| 🤖 AI Caption Processing  | Cleans grammar and formats captions automatically  |
+| 🌍 Multi-language Support | Supports 40+ languages                             |
+| 🎨 Caption Styles         | Standard, Educational, Cinematic, Accessible       |
+| 🔥 Burn Captions          | Embed captions permanently into the video          |
+| 🖥️ Web Interface         | Upload video and generate captions through browser |
+| ⌨️ CLI Support            | Run caption generation from terminal               |
+| 📁 Subtitle Export        | Generates `.srt` subtitle files                    |
+
+---
+
+# 🧠 Technologies Used
+
+* Python
+* Flask
+* OpenAI Whisper
+* FFmpeg
+* PyTorch
+* HTML / CSS
+* JavaScript
+
+---
+
+# 📂 Project Structure
 
 ```
-ai-caption-generator/
+CaptionGen-AI/
+│
 ├── src/
-│   ├── caption_generator.py   ← Core agentic pipeline + CLI
-│   └── app.py                 ← Flask web UI
-├── captions_output/           ← Generated SRT files + captioned videos
-├── uploads/                   ← Uploaded videos (web UI)
-├── .vscode/
-│   ├── launch.json            ← Debug configurations
-│   └── settings.json          ← VS Code Python settings
-├── requirements.txt
-└── README.md
+│   ├── app.py                  # Flask Web Application
+│   └── caption_generator.py    # Core caption generation logic
+│
+├── uploads/                    # Uploaded videos
+├── captions_output/            # Generated captions
+│
+├── requirements.txt            # Python dependencies
+├── README.md
+└── .env                        # Environment variables (optional)
 ```
 
 ---
 
-## 🚀 Step-by-Step Setup in VS Code
+# ⚙️ Installation Guide
 
-### Step 1 — Prerequisites
-
-Install these before starting:
-
-**ffmpeg** (required for audio extraction + video burning):
-```bash
-# macOS
-brew install ffmpeg
-
-# Ubuntu/Debian
-sudo apt install ffmpeg
-
-# Windows — download from https://ffmpeg.org/download.html
-# Then add to PATH
-```
-
-**Python 3.9+** — check with: `python --version`
-
----
-
-### Step 2 — Open in VS Code
+## 1️⃣ Clone the Repository
 
 ```bash
-# Clone or download the project, then:
-cd ai-caption-generator
-code .
+git clone https://github.com/nikhilpowar09/CaptionGen-AI.git
+cd CaptionGen-AI
 ```
 
 ---
 
-### Step 3 — Create Virtual Environment
-
-Open the VS Code **Terminal** (`Ctrl+`` ` or `Cmd+`` `) and run:
+# 2️⃣ Create Virtual Environment
 
 ```bash
-# Create venv
 python -m venv venv
+```
 
-# Activate it:
-# macOS/Linux:
-source venv/bin/activate
+Activate environment
 
-# Windows:
+### Windows
+
+```bash
 venv\Scripts\activate
 ```
 
-VS Code will detect the venv automatically. If prompted, click **"Yes"** to use it as the workspace interpreter.
+### Linux / macOS
+
+```bash
+source venv/bin/activate
+```
 
 ---
 
-### Step 4 — Install Dependencies
+# 3️⃣ Install Dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
-> ⚠️ **Note on PyTorch/Whisper**: The first install downloads ~500MB for PyTorch. This is normal.
-
 ---
 
-### Step 5 — Set Your API Key
+# 4️⃣ Install FFmpeg
 
-**macOS/Linux** (add to `~/.zshrc` or `~/.bashrc` for persistence):
+FFmpeg is required for **audio extraction and caption burning**.
+
+### Windows
+
+Download from:
+
+https://ffmpeg.org/download.html
+
+Add FFmpeg to **system PATH**.
+
+### Ubuntu / Debian
+
 ```bash
-export GROK_API_KEY=sk-ant-your-key-here
+sudo apt install ffmpeg
 ```
 
-**Windows** (PowerShell):
-```powershell
-$env:GROK_API_KEY = "sk-ant-your-key-here"
-```
+### macOS
 
-Or create a `.env` file in the project root:
+```bash
+brew install ffmpeg
 ```
-GROK_API_KEY=sk-ant-your-key-here
-```
-
-Get your key at: https://console.GROK.com
 
 ---
 
-### Step 6 — Run the Project
+# ▶️ Running the Project
 
-#### Option A: Web UI (recommended)
+## Option 1 — Run Web Application
 
 ```bash
 cd src
 python app.py
 ```
 
-Then open **http://localhost:5000** in your browser.
+Open browser:
 
-#### Option B: Command Line
+```
+http://localhost:5000
+```
+
+Upload a video and generate captions.
+
+---
+
+# Option 2 — Run via Command Line
 
 ```bash
 cd src
-
-# Basic usage
-python caption_generator.py ../my_video.mp4
-
-# With options
-python caption_generator.py ../my_video.mp4 --style educational
-python caption_generator.py ../my_video.mp4 --style cinematic --burn
-python caption_generator.py ../my_video.mp4 --language hi --style accessible
+python caption_generator.py video.mp4
 ```
 
-#### Option C: VS Code Debugger
+Example with options:
 
-1. Press `F5` or go to **Run → Start Debugging**
-2. Select **"CLI: Generate Captions"** or **"Web UI: Caption Generator"**
-3. Enter your video path when prompted
-
----
-
-## 🤖 How the Agentic Pipeline Works
-
-Grok uses **tool use** to autonomously plan and execute the caption workflow:
-
-```
-User Request
-     │
-     ▼
-┌─────────────────────────────────────────┐
-│          Grok Agent (Grok-sonnet-4-20250514)            │
-│                                         │
-│  Thinks: "I need to:                   │
-│   1. Extract audio from video"          │
-│        │                                │
-│        ▼                                │
-│  [Tool Call: extract_audio]            │
-│        │ result: audio.wav              │
-│        ▼                                │
-│  [Tool Call: transcribe_audio]         │
-│        │ result: raw transcript         │
-│        ▼                                │
-│  [Tool Call: generate_captions]        │
-│        │ result: polished SRT           │
-│        ▼                                │
-│  [Tool Call: save_captions]            │
-│        │ result: file saved             │
-│        ▼                                │
-│  (optional) [Tool Call: burn_captions] │
-└─────────────────────────────────────────┘
-     │
-     ▼
-  Output: .srt file + (optionally) captioned .mp4
+```bash
+python caption_generator.py video.mp4 --style educational
+python caption_generator.py video.mp4 --style cinematic --burn
+python caption_generator.py video.mp4 --language hi
 ```
 
-The agent loop continues until `stop_reason == "end_turn"` with no pending tool calls.
+---
+
+# 🎨 Caption Styles
+
+| Style       | Description                           |
+| ----------- | ------------------------------------- |
+| Standard    | Clean subtitles for general videos    |
+| Educational | Precise formatting for lectures       |
+| Cinematic   | Dramatic caption formatting           |
+| Accessible  | Simplified captions for accessibility |
 
 ---
 
-## 🎨 Caption Styles
+# 📤 Output Files
 
-| Style | Best For | What Grok Does |
-|---|---|---|
-| **Standard** | General videos | Cleans grammar, formats cleanly |
-| **Educational** | Lectures, tutorials | Precise punctuation, defines terms |
-| **Cinematic** | Films, short films | Artistic phrasing, dramatic pauses |
-| **Accessible** | Public content | Simple words, [MUSIC] markers, spell out numbers |
+Generated files are stored in:
 
----
+```
+captions_output/
+```
 
-## 📤 Output Files
+Example outputs:
 
-All outputs go to `captions_output/`:
-
-- `{video_name}_captions.srt` — subtitle file
-- `{video_name}_captioned.mp4` — video with burned-in captions (if `--burn` used)
+```
+video_captions.srt
+video_captioned.mp4
+```
 
 ---
 
-## 🛠️ Troubleshooting
-
-| Error | Fix |
-|---|---|
-| `GROK_API_KEY not set` | Set the env variable (Step 5) |
-| `ffmpeg not found` | Install ffmpeg and ensure it's in PATH |
-| `whisper not installed` | `pip install openai-whisper` |
-| `CUDA out of memory` | Whisper will auto-fall back to CPU |
-| Port 5000 in use | `python app.py --port 5001` |
-| Video too large | Compress video first or use CLI |
-
----
-
-## 📝 SRT Format Example
+# 📜 Example SRT Format
 
 ```
 1
-00:00:01,000 --> 00:00:04,200
-Welcome to this tutorial on machine learning.
+00:00:01,000 --> 00:00:04,000
+Welcome to this tutorial on Artificial Intelligence.
 
 2
-00:00:04,500 --> 00:00:08,300
-Today we'll cover neural networks
-and how they learn from data.
+00:00:04,500 --> 00:00:08,200
+Today we will learn how machine learning works.
 ```
 
 ---
 
-## 🔧 Customization
+# 🛠 Troubleshooting
 
-To add a new caption style, edit `generate_captions()` in `caption_generator.py`:
+| Issue                      | Solution                         |
+| -------------------------- | -------------------------------- |
+| FFmpeg not found           | Install FFmpeg and add to PATH   |
+| Whisper installation error | Run `pip install openai-whisper` |
+| Torch installation slow    | This is normal for first install |
+| Port already in use        | Run `python app.py --port 5001`  |
 
-```python
-style_prompts = {
-    "my_style": "Your custom instructions for Grok here.",
-    ...
-}
+---
+
+# 🌐 Deployment
+
+This project can be deployed on:
+
+* Render
+* PythonAnywhere
+* Replit
+* Fly.io
+* AWS / DigitalOcean
+
+Example live deployment:
+
+```
+https://captiongen-ai.onrender.com
 ```
 
-To add a new tool, add it to the `tools` list and implement the function, then add it to the `handlers` dict in `run_tool()`.
+---
+
+# 🤝 Contributing
+
+Contributions are welcome.
+
+1. Fork the repository
+2. Create a new branch
+3. Make changes
+4. Submit a pull request
+
+---
+
+# 📄 License
+
+This project is open-source and available under the **MIT License**.
+
+---
+
+# 👨‍💻 Author
+
+**Nikhil Powar**
+
+GitHub
+https://github.com/nikhilpowar09
+
+---
+
+# ⭐ Support
+
+If you like this project, please **star the repository** on GitHub.
