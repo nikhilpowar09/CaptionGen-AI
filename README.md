@@ -1,6 +1,6 @@
 # 🎬 AI-Powered Video Caption Generator
 
-An **Agentic AI pipeline** that autonomously transcribes, cleans, and formats captions for any video file. Powered by **Claude claude-sonnet-4-20250514** (tool use / function calling) and **OpenAI Whisper**.
+An **Agentic AI pipeline** that autonomously transcribes, cleans, and formats captions for any video file.
 
 ---
 
@@ -8,7 +8,7 @@ An **Agentic AI pipeline** that autonomously transcribes, cleans, and formats ca
 
 | Feature | Detail |
 |---|---|
-| 🤖 Agentic AI | Claude autonomously orchestrates all steps with tool use |
+| 🤖 Agentic AI | Grok autonomously orchestrates all steps with tool use |
 | 🎙️ Speech Recognition | OpenAI Whisper (multilingual, offline) |
 | 🧠 AI Enhancement | Claude cleans grammar, fixes filler words, formats SRT |
 | 🎨 4 Caption Styles | Standard, Educational, Cinematic, Accessible |
@@ -103,20 +103,20 @@ pip install -r requirements.txt
 
 **macOS/Linux** (add to `~/.zshrc` or `~/.bashrc` for persistence):
 ```bash
-export ANTHROPIC_API_KEY=sk-ant-your-key-here
+export GROK_API_KEY=sk-ant-your-key-here
 ```
 
 **Windows** (PowerShell):
 ```powershell
-$env:ANTHROPIC_API_KEY = "sk-ant-your-key-here"
+$env:GROKC_API_KEY = "sk-ant-your-key-here"
 ```
 
 Or create a `.env` file in the project root:
 ```
-ANTHROPIC_API_KEY=sk-ant-your-key-here
+GROK_API_KEY=sk-ant-your-key-here
 ```
 
-Get your key at: https://console.anthropic.com
+Get your key at: https://console.grok.com
 
 ---
 
@@ -215,7 +215,7 @@ All outputs go to `captions_output/`:
 
 | Error | Fix |
 |---|---|
-| `ANTHROPIC_API_KEY not set` | Set the env variable (Step 5) |
+| `GROK_API_KEY not set` | Set the env variable (Step 5) |
 | `ffmpeg not found` | Install ffmpeg and ensure it's in PATH |
 | `whisper not installed` | `pip install openai-whisper` |
 | `CUDA out of memory` | Whisper will auto-fall back to CPU |
